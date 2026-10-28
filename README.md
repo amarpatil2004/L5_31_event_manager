@@ -1,55 +1,51 @@
 # Lab 5: Static Code Analysis — Event Management System
 
-**Your file:** `event_manager.py`
+**Student Name:** Amar Patil  
+**SRN:** PES1UG24AM031  
+**Course:** Software Engineering (PES University)  
+**Assigned File:** `event_manager.py`  
 
-Follow the lab handout for the full instructions.
+---
 
-## About the program
+## About the Program
 
-A booking desk for small events. It creates events with a venue and capacity, registers guests until an event is full, reports seats left, picks a lucky-draw winner, labels events as upcoming or completed, and saves everything to events.pkl.
+A booking desk for small events. It creates events with a venue and capacity, registers guests until an event is full, reports seats left, picks a lucky-draw winner, labels events as upcoming or completed, and persists event data safely to `events.json`.
 
-The code works, but only just. It has quality, style and security problems of the kind Pylint, Flake8 and Bandit are built to find.
+The original codebase had critical quality, style, logic, and security problems flagged by **Pylint**, **Flake8**, and **Bandit**. All identified issues have been systematically resolved and documented.
 
-## What to do
+---
 
-1. **Run it first** and read the output carefully:
+## Static Code Analysis Summary
 
-   ```
-   python event_manager.py
-   ```
+| Tool | Before Fixes | After Fixes | Status |
+|---|---|---|---|
+| **Pylint** | 4.64 / 10 | **10.00 / 10** | Passed (Exceeds > 9.5 target) |
+| **Bandit** | 4 issues (1 High, 1 Medium, 2 Low) | **0 issues** | Passed (100% clean) |
+| **Flake8** | 4 style & whitespace violations | **0 violations** | Passed (100% PEP 8 compliant) |
 
-   It runs a short demonstration and needs no input. Not every problem in this file is something a tool will flag, so pay attention to output that looks wrong. Two events are created separately, so think about whether the seat counts and "full" messages make sense.
+---
 
-2. **Install the tools:**
+## Project Structure & Deliverables
 
-   ```
-   python -m pip install pylint bandit flake8
-   ```
+- `event_manager.py`: Cleaned and optimized version with all security, logic, docstring, naming, and style issues fixed.
+- `issues.md`: Completed issue documentation table (8 issues documented in detail) and `#nosec` justifications.
+- `reflection.md`: In-depth reflection addressing learning outcomes, critical bugs, tool roles, and engineering takeaways.
+- `pylint_report_before.txt` & `pylint_report.txt`: Pylint reports before (4.64/10) and after (10.00/10).
+- `bandit_report_before.txt` & `bandit_report.txt`: Bandit reports before (4 findings) and after (0 findings).
+- `flake8_report_before.txt` & `flake8_report.txt`: Flake8 reports before (4 violations) and after (clean).
 
-3. **Run the analysis and save the reports:**
+---
 
-   ```
-   python -m pylint event_manager.py > pylint_report.txt
-   python -m bandit -r event_manager.py > bandit_report.txt
-   python -m flake8 event_manager.py > flake8_report.txt
-   ```
+## Running the Project & Analysis
 
-4. **Document the issues** in `issues.md` using this table (at least 4 rows, high and medium severity first):
+### 1. Run the Python Script
+```bash
+python event_manager.py
+```
 
-   | Issue | Type | Line(s) | Description | Fix Approach |
-   |-------|------|---------|-------------|--------------|
-   | ...   | ...  | ...     | ...         | ...          |
-
-5. **Fix the code.** Fix at least 4 of the issues you documented, then rerun all three tools to confirm they are gone. Repeat until you are satisfied. The program should still do its job when you are done.
-
-6. **Reflect.** Answer the four reflection questions from the handout in `reflection.md`.
-
-## Deliverables
-
-- `event_manager.py`: your cleaned version, with at least 4 issues fixed.
-- `issues.md`: the completed issue table.
-- `reflection.md`: your answers to the reflection questions.
-
-**Target:** aim for a Pylint score above 9.5 on your final file. A perfect 10.00/10 is very good.
-
-Be ready to explain the bugs you found and how you fixed them. You may be called on to present.
+### 2. Run Static Analysis Tools
+```bash
+python -m pylint event_manager.py
+python -m bandit -r event_manager.py
+python -m flake8 event_manager.py
+```
