@@ -1,6 +1,6 @@
-import os
-import pickle
-import random
+import json
+import secrets
+import subprocess  # nosec B404
 from datetime import date
 
 events = {}
@@ -41,19 +41,20 @@ def guestReport(eventName, sortOrder):
     return ", ".join(names)
 
 
-def saveEvents(fileName="events.pkl"):
-    with open(fileName, "wb") as f:
-        pickle.dump(events, f)
+def saveEvents(fileName="events.json"):
+    with open(fileName, "w", encoding="utf-8") as f:
+        json.dump(events, f, indent=2)
 
 
-def loadEvents(fileName="events.pkl"):
-    with open(fileName, "rb") as f:
-        return pickle.load(f)
+def loadEvents(fileName="events.json"):
+    with open(fileName, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 
 def printBadges(eventName):
     # Helper kept for the lab: not called by the demo
-    os.system("lp badges_" + eventName + ".txt")
+    cmd = ["/usr/bin/lp", f"badges_{eventName}.txt"]
+    subprocess.run(cmd, check=False)  # nosec B603
 
 
 def main():
@@ -69,7 +70,7 @@ def main():
     print("Tech Meetup guests:", guestReport("Tech Meetup", "name"))
     print("Tech Meetup is", eventStatus(date(2099, 1, 15)))
     print("Alumni Dinner is", eventStatus(date(2020, 5, 1)))
-    winner = random.choice(events["Tech Meetup"]["guests"])
+    winner = secrets.choice(events["Tech Meetup"]["guests"])
     print("Lucky draw winner:", winner)
     saveEvents()
     restored = loadEvents() # reload to confirm the save worked
