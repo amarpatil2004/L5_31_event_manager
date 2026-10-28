@@ -59,12 +59,12 @@ def printBadges(eventName):
 
 def main():
     createEvent("Tech Meetup", "Hall A", 3)
-    createEvent("Alumni Dinner", "Rooftop",2)
+    createEvent("Alumni Dinner", "Rooftop", 2)
     registerGuest("Tech Meetup", "Asha")
     registerGuest("Tech Meetup", "Ravi")
     registerGuest("Alumni Dinner", "Meena")
     registerGuest("Workshop", "Kiran")
-    left=seatsLeft("Tech Meetup")
+    left = seatsLeft("Tech Meetup")
     print("Seats left at Tech Meetup:", left)
     print("Seats left at Alumni Dinner:", seatsLeft("Alumni Dinner"))
     print("Tech Meetup guests:", guestReport("Tech Meetup", "name"))
@@ -73,8 +73,9 @@ def main():
     winner = secrets.choice(events["Tech Meetup"]["guests"])
     print("Lucky draw winner:", winner)
     saveEvents()
-    restored = loadEvents() # reload to confirm the save worked
+    restored = loadEvents()  # reload to confirm the save worked
     print("Events restored from file:", len(restored))
     print("Venues:", [e["venue"] for e in restored.values()])
+
 
 main()
